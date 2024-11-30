@@ -115,34 +115,36 @@
   <aside id="sidebar" class="sidebar">
 
     <ul class="sidebar-nav" id="sidebar-nav">
+			<?php $menu = $this->uri->segment(2) ?>
 
       <li class="nav-item">
-        <a class="nav-link " href="index.html">
+        <a class="nav-link <?php if($menu=='dashboard'){echo '';}else{echo 'collapsed';} ?>" href="<?= base_url('admin/dashboard') ?>">
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
       </li><!-- End Dashboard Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-menu-button-wide"></i><span>Components</span><i class="bi bi-chevron-down ms-auto"></i>
+        <a class="nav-link collapsed" href="#">
+          <i class="bi bi-menu-button-wide"></i><span>Kategori Catatan</span>
         </a>
-      </li><!-- End Components Nav -->
+      </li>
+			<!-- End Components Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-journal-text"></i><span>Forms</span><i class="bi bi-chevron-down ms-auto"></i>
+        <a class="nav-link collapsed"  href="#">
+          <i class="bi bi-journal-text"></i><span>Catatan</span>
         </a>
       </li><!-- End Forms Nav -->
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-layout-text-window-reverse"></i><span>Tables</span><i class="bi bi-chevron-down ms-auto"></i>
+      <!-- <li class="nav-item">
+        <a class="nav-link collapsed" href="#">
+          <i class="bi bi-layout-text-window-reverse"></i><span>Tables
         </a>
-      </li><!-- End Tables Nav -->
+      </li>End Tables Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="<?= base_url('admin/user') ?>">
+        <a class="nav-link <?php if($menu=='user'){echo '';}else{echo 'collapsed';} ?>" href="<?= base_url('admin/user') ?>">
           <i class="bi bi-people"></i><span>User</span>
         </a>
       </li><!-- End Charts Nav -->
