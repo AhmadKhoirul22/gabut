@@ -52,5 +52,15 @@ class Kategori extends CI_Controller{
 	  	</div>');
 		redirect($_SERVER['HTTP_REFERER']);
 	}
+	public function delete($id){
+		$data = array('id_kategori' => $id);
+		$this->db->delete('kategori',$data);
+		$this->session->set_flashdata('alert','<div class="alert alert-danger bg-danger text-light border-0 alert-dismissible fade show" role="alert">
+		nama kategori berhasil dihapus
+		<button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+	  	</div>');
+		redirect($_SERVER['HTTP_REFERER']);
+
+	}
 }
 ?>

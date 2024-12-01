@@ -58,9 +58,47 @@
 			</td>
 			<td>
 				<a href="<?= base_url('admin/user/delete/'.$uu['foto']) ?>" class="btn btn-danger" onclick="return confirm('yakin hapus foto')" ><i class="bi bi-trash"></i></a>
-				<button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#basicModal">
+				<button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#user<?= $uu['id_user'] ?>">
 					<i class="bi bi-pencil"></i>
 				</button>
+				<!-- modal update -->
+				<div class="modal fade" id="user<?= $uu['id_user'] ?>" tabindex="-1" aria-hidden="true" style="display: none;">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title">Update User</h5>
+								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+							</div>
+							<div class="modal-body">
+								<form action="<?= base_url('admin/user/update') ?>" enctype="multipart/form-data" method="post">
+									<input type="hidden" value="<?= $uu['foto'] ?>" name="nama_foto" >
+									<input type="hidden" value="<?= $uu['id_user'] ?>" name="id_user" >
+									<div class="mb-3">
+										<label for="" class="form-label">Nama</label>
+										<input type="text" name="nama" value="<?= $uu['nama'] ?>" class="form-control">
+									</div>
+									<div class="mb-3">
+										<label for="" class="form-label">Username</label>
+										<input type="text" name="username" value="<?= $uu['username'] ?>" class="form-control">
+									</div>
+									<div class="mb-3">
+										<label for="" class="form-label">Foto</label>
+										<input type="file" name="foto" class="form-control">
+									</div>
+									<div class="mb-3">
+										<label for="" class="form-label">Password</label>
+										<input type="password" name="password" class="form-control"  >
+									</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+								<button type="submit" class="btn btn-primary">Save changes</button>
+							</div>
+							</form>
+						</div>
+					</div>
+				</div>
+				 <!-- end modal update -->
 			</td>
 		</tr>
 		<?php } ?>
