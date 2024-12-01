@@ -125,7 +125,7 @@
       </li><!-- End Dashboard Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#">
+        <a class="nav-link <?php if($menu=='kategori'){echo '';}else{echo 'collapsed';} ?>" href="<?= base_url('admin/kategori') ?>">
           <i class="bi bi-menu-button-wide"></i><span>Kategori Catatan</span>
         </a>
       </li>
