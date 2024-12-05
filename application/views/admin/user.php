@@ -57,7 +57,9 @@
 				<img src="<?= base_url('assets/foto-user/'.$uu['foto']) ?>" class="img-thumbnail" width="200px" height="200px" alt="">
 			</td>
 			<td>
+				<?php if($this->session->userdata('id_user') != $uu['id_user']){ ?>
 				<a href="<?= base_url('admin/user/delete/'.$uu['foto']) ?>" class="btn btn-danger" onclick="return confirm('yakin hapus foto')" ><i class="bi bi-trash"></i></a>
+				<?php } ?>
 				<button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#user<?= $uu['id_user'] ?>">
 					<i class="bi bi-pencil"></i>
 				</button>
