@@ -11,5 +11,12 @@ class Kategori_model extends CI_Model{
 		);
 		return $data;
 	}
+	public function tampil_konten(){
+		$this->db->from('konten a');
+		$this->db->join('kategori b','b.id_kategori = a.id_kategori','left');
+		$this->db->join('user u','u.id_user = a.id_user','left');
+		$konten = $this->db->get()->result_array();
+		return $konten;
+	}
 }
 ?>
