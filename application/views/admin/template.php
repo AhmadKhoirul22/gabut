@@ -116,7 +116,7 @@ $data = $this->db->get()->row_array();
 			<!-- End Components Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed"  href="#">
+        <a class="nav-link <?php if($menu=='konten'){echo '';}else{echo 'collapsed';} ?>"  href="<?= base_url('admin/konten') ?>">
           <i class="bi bi-journal-text"></i><span>Catatan</span>
         </a>
       </li><!-- End Forms Nav -->
