@@ -67,5 +67,21 @@ class Konten extends CI_Controller{
 	  	</div>');
 		redirect($_SERVER['HTTP_REFERER']);
 	}
+
+	public function delete($id){
+		$filename=FCPATH.'/assets/foto-konten/'.$id;
+        if(file_exists($filename)){
+            unlink("./assets/foto-konten/".$id);
+        }
+        $where = array(
+                'foto_konten' => $id
+                );
+            $this->db->delete('konten', $where);
+            $this->session->set_flashdata('alert','<div class="alert alert-danger bg-danger text-light border-0 alert-dismissible fade show" role="alert">
+		data berhasil dihapus
+		<button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+	  	</div>');
+		redirect($_SERVER['HTTP_REFERER']);
+	}
 }
 ?>
