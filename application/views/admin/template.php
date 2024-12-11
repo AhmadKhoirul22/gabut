@@ -8,6 +8,9 @@
   <title><?= $title ?></title>
   <meta content="" name="description">
   <meta content="" name="keywords">
+	<!-- Tambahkan SweetAlert -->
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
   <!-- Favicons -->
   <link href="<?= base_url('assets/niceadmin/') ?>assets/img/favicon.png" rel="icon">
@@ -161,7 +164,49 @@ $data = $this->db->get()->row_array();
 
   <main id="main" class="main">
   <div class="mb-3 mt-3">
-	<?= $this->session->flashdata('alert') ?>
+	<!-- <?= $this->session->flashdata('alert') ?> -->
+	<?php if ($this->session->flashdata('alert') == 'warning'): ?>
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Data tidak valid',
+            text: 'Data Tersebut Sudah Ada.',
+            confirmButtonText: 'OK',
+            timer: 3000
+        });
+    </script>
+<?php elseif ($this->session->flashdata('alert') == 'add'): ?>
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil',
+            text: 'Data berhasil ditambahkan!',
+            confirmButtonText: 'OK',
+            timer: 3000
+        });
+    </script>
+<?php elseif ($this->session->flashdata('alert') == 'update'): ?>
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil',
+            text: 'Data berhasil diupdate!',
+            confirmButtonText: 'OK',
+            timer: 3000
+        });
+    </script>
+<?php elseif ($this->session->flashdata('alert') == 'delete'): ?>
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil',
+            text: 'Data berhasil dihapus!',
+            confirmButtonText: 'OK',
+            timer: 3000
+        });
+    </script>
+<?php endif; ?>
+
   </div>
 	<?= $contents ?>
   </main><!-- End #main -->
