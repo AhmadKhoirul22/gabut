@@ -19,19 +19,13 @@ class Kategori extends CI_Controller{
 		$kategori = $this->db->get()->result_array();
 
 		if($kategori != null){
-			$this->session->set_flashdata('alert','<div class="alert alert-danger bg-danger text-light border-0 alert-dismissible fade show" role="alert">
-		nama kategori sudah digunakan
-		<button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
-	  	</div>');
+			$this->session->set_flashdata('alert','warning');
 		redirect($_SERVER['HTTP_REFERER']);
 		}
 
 		$data = $this->Kategori_model->crud();
 		$this->db->insert('kategori',$data);
-		$this->session->set_flashdata('alert','<div class="alert alert-success bg-success text-light border-0 alert-dismissible fade show" role="alert">
-		nama kategori berhasil ditambahkan
-		<button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
-	  	</div>');
+		$this->session->set_flashdata('alert','add');
 		redirect($_SERVER['HTTP_REFERER']);
 	}
 	public function update(){
@@ -39,29 +33,20 @@ class Kategori extends CI_Controller{
 		$kategori = $this->db->get()->result_array();
 
 		if($kategori != null){
-			$this->session->set_flashdata('alert','<div class="alert alert-danger bg-danger text-light border-0 alert-dismissible fade show" role="alert">
-		nama kategori sudah digunakan
-		<button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
-	  	</div>');
+			$this->session->set_flashdata('alert','warning');
 		redirect($_SERVER['HTTP_REFERER']);
 		}
 
 		$data = $this->Kategori_model->crud();
 		$where = array('id_kategori' => $this->input->post('id_kategori'));
 		$this->db->update('kategori',$data,$where);
-		$this->session->set_flashdata('alert','<div class="alert alert-success bg-success text-light border-0 alert-dismissible fade show" role="alert">
-		nama kategori berhasil diupdate
-		<button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
-	  	</div>');
+		$this->session->set_flashdata('alert','update');
 		redirect($_SERVER['HTTP_REFERER']);
 	}
 	public function delete($id){
 		$data = array('id_kategori' => $id);
 		$this->db->delete('kategori',$data);
-		$this->session->set_flashdata('alert','<div class="alert alert-danger bg-danger text-light border-0 alert-dismissible fade show" role="alert">
-		nama kategori berhasil dihapus
-		<button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
-	  	</div>');
+		$this->session->set_flashdata('alert','delete');
 		redirect($_SERVER['HTTP_REFERER']);
 
 	}
