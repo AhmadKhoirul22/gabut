@@ -17,10 +17,7 @@ class Auth extends CI_Controller {
 		$cek  = $this->db->get()->row();
 
 		if($cek == null){
-			$this->session->set_flashdata('alert','<div class="alert alert-warning bg-warning text-light border-0 alert-dismissible fade show" role="alert">
-                username tidak ditemukan
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
-              </div>');
+			$this->session->set_flashdata('alert','username');
 			redirect($_SERVER['HTTP_REFERER']);
 		} else if($cek->password == $password){
 			$data = array(
@@ -35,10 +32,7 @@ class Auth extends CI_Controller {
 			$this->session->set_userdata($data);
 			redirect('admin/dashboard');
 		} else {
-			$this->session->set_flashdata('alert','<div class="alert alert-warning bg-warning text-light border-0 alert-dismissible fade show" role="alert">
-                password salah
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
-              </div>');
+			$this->session->set_flashdata('alert','password');
 			redirect($_SERVER['HTTP_REFERER']);
 		}
 	}
