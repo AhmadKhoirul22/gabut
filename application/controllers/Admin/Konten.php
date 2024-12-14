@@ -45,10 +45,7 @@ class Konten extends CI_Controller{
 		$this->db->from('konten')->where('judul',$this->input->post('judul'));
 		$username = $this->db->get()->result_array();
 		if($username != null){
-			$this->session->set_flashdata('alert','<div class="alert alert-danger bg-danger text-light border-0 alert-dismissible fade show" role="alert">
-		judul sudah digunakan
-		<button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
-	  	</div>');
+			$this->session->set_flashdata('alert','warning');
 		redirect($_SERVER['HTTP_REFERER']);
 		}
 		// $data = $this->User_model->inputan();
@@ -61,10 +58,7 @@ class Konten extends CI_Controller{
 			'id_user' => $this->session->userdata('id_user')
 		);
 		$this->db->insert('konten',$data);
-		$this->session->set_flashdata('alert','<div class="alert alert-success bg-success text-light border-0 alert-dismissible fade show" role="alert">
-		data berhasil ditambahkan
-		<button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
-	  	</div>');
+		$this->session->set_flashdata('alert','add');
 		redirect($_SERVER['HTTP_REFERER']);
 	}
 
@@ -77,10 +71,43 @@ class Konten extends CI_Controller{
                 'foto_konten' => $id
                 );
             $this->db->delete('konten', $where);
-            $this->session->set_flashdata('alert','<div class="alert alert-danger bg-danger text-light border-0 alert-dismissible fade show" role="alert">
-		data berhasil dihapus
-		<button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
-	  	</div>');
+            $this->session->set_flashdata('alert','delete');
+		redirect($_SERVER['HTTP_REFERER']);
+	}
+	public function update(){
+		// foto update
+		$namafoto = $this->input->post('nama_foto');
+        $config['upload_path']          = 'assets/foto-user/';
+        $config['max_size'] = 500 * 10000000024; //3 * 1024 * 1024; //3Mb; 0=unlimited
+        $config['file_name']            = $namafoto;
+        $config['overwrite']            = true;
+        $config['allowed_types']        = '*';  
+        $this->load->library('upload', $config);
+        if($_FILES['foto']['size'] >= 55555500 * 1024){
+            $this->session->set_flashdata('alert', '
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <i class="bi bi-exclamation-triangle me-1"></i>
+            ukuran file lebih dari 500kb ulangi upload dengan ukuran foto kurang dari 500kb
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+                    ');
+        } elseif( ! $this->upload->do_upload('foto')){
+            $error = array('error' => $this->upload->display_errors());
+        }else{
+            $data = array('upload_data' => $this->upload->data());
+        } 
+		// end foto update
+		$data = array(
+			'nama' => $this->input->post('nama'),
+			'username' => $this->input->post('username'),
+			'password' => md5($this->input->post('password')),
+			
+		);
+		$where = [
+			'foto' => $namafoto
+		];
+		$this->db->update('user',$data,$where);
+		$this->session->set_flashdata('alert','update');
 		redirect($_SERVER['HTTP_REFERER']);
 	}
 }
