@@ -43,10 +43,7 @@ class User extends CI_Controller{
 		$this->db->from('user')->where('username',$this->input->post('username'));
 		$username = $this->db->get()->result_array();
 		if($username != null){
-			$this->session->set_flashdata('alert','<div class="alert alert-danger bg-danger text-light border-0 alert-dismissible fade show" role="alert">
-		username sudah digunakan
-		<button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
-	  	</div>');
+			$this->session->set_flashdata('alert','warning');
 		redirect($_SERVER['HTTP_REFERER']);
 		}
 		// $data = $this->User_model->inputan();
@@ -57,10 +54,7 @@ class User extends CI_Controller{
 			'foto' => $namafoto,
 		);
 		$this->db->insert('user',$data);
-		$this->session->set_flashdata('alert','<div class="alert alert-success bg-success text-light border-0 alert-dismissible fade show" role="alert">
-		data berhasil ditambahkan
-		<button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
-	  	</div>');
+		$this->session->set_flashdata('alert','add');
 		redirect($_SERVER['HTTP_REFERER']);
 	}
 
@@ -73,10 +67,7 @@ class User extends CI_Controller{
                 'foto' => $id
                 );
             $this->db->delete('user', $where);
-            $this->session->set_flashdata('alert','<div class="alert alert-danger bg-danger text-light border-0 alert-dismissible fade show" role="alert">
-		data berhasil dihapus
-		<button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
-	  	</div>');
+            $this->session->set_flashdata('alert','delete');
 		redirect($_SERVER['HTTP_REFERER']);
 	}
 	public function update(){
@@ -112,10 +103,7 @@ class User extends CI_Controller{
 			'foto' => $namafoto
 		];
 		$this->db->update('user',$data,$where);
-		$this->session->set_flashdata('alert','<div class="alert alert-success bg-success text-light border-0 alert-dismissible fade show" role="alert">
-		data berhasil diupdate
-		<button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
-	  	</div>');
+		$this->session->set_flashdata('alert','update');
 		redirect($_SERVER['HTTP_REFERER']);
 	}
 }
