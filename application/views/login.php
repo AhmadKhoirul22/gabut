@@ -8,6 +8,8 @@
   <title>Login rekk</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
+		<!-- Tambahkan SweetAlert -->
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
   <!-- Favicons -->
   <link href="<?= base_url('assets/niceadmin/') ?>assets/img/favicon.png" rel="icon">
@@ -64,7 +66,26 @@
                     <p class="text-center small">Enter your username & password to login</p>
                   </div>
 				  <div class="mb-3">
-					<?= $this->session->flashdata('alert') ?>
+					<?php if ($this->session->flashdata('alert') == 'username'): ?>
+					<script>
+							Swal.fire({
+									icon: 'error',
+									title: 'Data tidak valid',
+									text: 'Username Sudah Digunakan.',
+									confirmButtonText: 'OK',
+									timer: 3000
+							});
+					</script>
+			<?php elseif ($this->session->flashdata('alert') == 'password'): ?>
+					<script>
+							Swal.fire({
+									icon: 'error',
+									title: 'Data tidak valid',
+									text: 'Password Salah',
+									confirmButtonText: 'OK',
+									timer: 3000
+							});
+					</script>
 				  </div>
 
                   <form class="row g-3 needs-validation" method="post" action="<?= base_url('auth/login') ?>" novalidate>
