@@ -23,9 +23,6 @@ class Auth extends CI_Controller {
 			$data = array(
 				'nama' => $cek->nama,
 				'username' => $cek->username,
-				// 'password' => $cek->password,
-				// 'email' => $cek->email,
-				// 'alamat' => $cek->alamat,
 				'id_user' => $cek->id_user,
 				'foto' => $cek->foto,
 			);
