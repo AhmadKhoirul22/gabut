@@ -8,5 +8,12 @@ class User_model extends CI_Model{
 		);
 		return $data;
 	}
+
+	public function tampil(){
+		$this->db->from('user');
+		$data = $this->db->get()->result_array();
+
+		return $data;
+	}
 }
 ?>
