@@ -4,6 +4,7 @@ class User extends CI_Controller{
 		parent::__construct();
 		$this->load->library('template');
 		$this->load->model('User_model');
+		$this->load->model('Kategori_model');
 		if($this->session->userdata('id_user') == null ){
 			redirect('auth');
 		}
